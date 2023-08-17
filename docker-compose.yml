@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  next:
+    build:
+      context: ./node
+      dockerfile: ./dockerfile
+    image: node
+    container_name: node
+    volumes:
+      - ./:/usr/src/app
+    command: sh -c 'cd next-app && yarn run dev'
+    ports:
+      - '3000:3000'
+  api:
+    build:
+      context: ./api
+      dockerfile: ./dockerfile
+    image: go
+    container_name: go
+    volumes:
+      - ./api/src:/api/src/
+    tty: true
+    stdin_open: true
+    ports:
+      - 8000:8000
