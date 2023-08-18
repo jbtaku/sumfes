@@ -1,0 +1,1 @@
+export type menuItem = {title: string, link:string}
